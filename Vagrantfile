@@ -1,7 +1,7 @@
 Vagrant::Config.run do |config|
 
-  config.vm.box = "dev-vm-2.0"
-  config.vm.box_url = "https://zeelot.s3.amazonaws.com/dev-vm-2.0-base.box"
+  config.vm.box = "lucid32"
+  # config.vm.box_url = "https://zeelot.s3.amazonaws.com/dev-vm-2.0-base.box"
 
   # Boot with a GUI so you can see the screen. (Default is headless)
   # config.vm.boot_mode = :gui
@@ -14,17 +14,18 @@ Vagrant::Config.run do |config|
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
   config.vm.forward_port 80, 8080
+  config.vm.forward_port 3306, 3306
 
   config.vm.share_folder("web-app", "/home/vagrant/web-app", "./", :owner => "vagrant")
 
   config.vm.provision :chef_solo do |chef|
     # This path will be expanded relative to the project directory
-    chef.cookbooks_path = "cookbooks"
+    chef.cookbooks_path = ["vagrant/cookbooks", "vagrant"]
 
-    chef.add_recipe("vagrant_main")
+    chef.add_recipe("project")
     # Uncomment the recipes you would want this app to use
-    # chef.add_recipe("vagrant_main::mysql")
-    # chef.add_recipe("vagrant_main::rabbitmq")
+    # chef.add_recipe("project::mysql")
+    # chef.add_recipe("project::rabbitmq")
     chef.json = {
       "xdebug" => {
         "remote_enable" => "1",
