@@ -1,8 +1,8 @@
 Vagrant::Config.run do |config|
 
-  config.vm.box = "lucid32"
-  # config.vm.box = "precise32"
-  config.vm.box_url= "files.vagrantup.com/precise32.box"
+  # config.vm.box = "lucid32"
+  config.vm.box = "precise32"
+  config.vm.box_url= "http://files.vagrantup.com/precise32.box"
 
   # Boot with a GUI so you can see the screen. (Default is headless)
   # config.vm.boot_mode = :gui

@@ -1,7 +1,12 @@
-# For some reason, a fresh copy of my VM has issues booting up until this runs
-#execute "initial-sudo-apt-get-update" do
-#  command "apt-get update"
-#end
+package "python-software-properties"
+
+execute "add-ppa" do
+  command "add-apt-repository ppa:nathan-renniewaldock/ppa"
+end
+
+execute "initial-sudo-apt-get-update" do
+  command "apt-get update"
+end
 
 # Making apache run as the vagrant user simplifies things when you ssh in
 node.set["apache"]["user"] = "vagrant"
@@ -13,8 +18,6 @@ require_recipe "apache2"
 require_recipe "apache2::mod_php5"
 require_recipe "apache2::mod_rewrite"
 require_recipe "apache2::mod_ssl"
-
-# require_recipe "project::php54"
 
 require_recipe "php"
 require_recipe "php::module_curl"
