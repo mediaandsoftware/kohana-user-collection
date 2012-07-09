@@ -1,7 +1,8 @@
 Vagrant::Config.run do |config|
 
   config.vm.box = "lucid32"
-  # config.vm.box_url = "https://zeelot.s3.amazonaws.com/dev-vm-2.0-base.box"
+  # config.vm.box = "precise32"
+  config.vm.box_url= "files.vagrantup.com/precise32.box"
 
   # Boot with a GUI so you can see the screen. (Default is headless)
   # config.vm.boot_mode = :gui
@@ -9,7 +10,7 @@ Vagrant::Config.run do |config|
   # Assign this VM to a host only network IP, allowing you to access it
   # via the IP.
   config.vm.network :hostonly, "33.33.33.10"
-  config.vm.network :bridged
+  # config.vm.network :bridged
 
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.

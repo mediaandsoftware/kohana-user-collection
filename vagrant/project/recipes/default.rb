@@ -14,6 +14,8 @@ require_recipe "apache2::mod_php5"
 require_recipe "apache2::mod_rewrite"
 require_recipe "apache2::mod_ssl"
 
+# require_recipe "project::php54"
+
 require_recipe "php"
 require_recipe "php::module_curl"
 require_recipe "php::module_fileinfo"
