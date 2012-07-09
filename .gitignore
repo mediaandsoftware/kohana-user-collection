@@ -1,2 +1,4 @@
 .idea
 .vagrant
+application/logs/*
+application/cache/*
