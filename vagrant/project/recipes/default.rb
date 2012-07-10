@@ -1,12 +1,14 @@
+package "make"
+
 package "python-software-properties"
 
 execute "add-ppa" do
   command "add-apt-repository ppa:nathan-renniewaldock/ppa"
 end
 
-execute "initial-sudo-apt-get-update" do
-  command "apt-get update"
-end
+#execute "initial-sudo-apt-get-update" do
+#  command "apt-get update"
+#end
 
 # Making apache run as the vagrant user simplifies things when you ssh in
 node.set["apache"]["user"] = "vagrant"
@@ -27,6 +29,20 @@ require_recipe "php::module_memcache"
 require_recipe "php::module_mysql"
 require_recipe "php::module_sqlite3"
 require_recipe "project::php_module_mcrypt"
+
+# install the http pecl
+package "libpcre3-dev"
+package "libcurl3"
+package "php5-dev"
+package "libcurl4-gnutls-dev"
+package "libmagic-dev"
+php_pear "pecl_http" do
+  action :install
+end
+
+bash "fix-pecl_http_extension" do
+  code "echo \"extension=http.so \n\" > /etc/php5/conf.d/pecl_http.ini"
+end
 
 # require_recipe "xdebug"
 
