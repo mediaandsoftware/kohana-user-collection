@@ -6,9 +6,9 @@ execute "add-ppa" do
   command "add-apt-repository ppa:nathan-renniewaldock/ppa"
 end
 
-#execute "initial-sudo-apt-get-update" do
-#  command "apt-get update"
-#end
+execute "initial-sudo-apt-get-update" do
+  command "apt-get update"
+end
 
 # Making apache run as the vagrant user simplifies things when you ssh in
 node.set["apache"]["user"] = "vagrant"
@@ -29,6 +29,7 @@ require_recipe "php::module_memcache"
 require_recipe "php::module_mysql"
 require_recipe "php::module_sqlite3"
 require_recipe "project::php_module_mcrypt"
+require_recipe "composer"
 
 # install the http pecl
 package "libpcre3-dev"
