@@ -26,6 +26,7 @@ require_recipe "php::module_gd"
 require_recipe "php::module_memcache"
 require_recipe "php::module_mysql"
 require_recipe "php::module_sqlite3"
+require_recipe "project::php_module_mcrypt"
 
 # require_recipe "xdebug"
 
