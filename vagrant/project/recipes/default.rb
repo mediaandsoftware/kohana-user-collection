@@ -27,7 +27,7 @@ require_recipe "php::module_memcache"
 require_recipe "php::module_mysql"
 require_recipe "php::module_sqlite3"
 
-require_recipe "xdebug"
+# require_recipe "xdebug"
 
 package "git-core"
 
